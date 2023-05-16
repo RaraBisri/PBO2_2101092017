@@ -25,8 +25,6 @@ public class Anggota {
         this.alamat = alamat;
         this.jeniskelamin = jeniskelamin;
     }
-    
-    
 
     public String getKodeanggota() {
         return kodeanggota;
@@ -60,5 +58,8 @@ public class Anggota {
         this.jeniskelamin = jeniskelamin;
     }
     
+    
+
+   
     
 }
