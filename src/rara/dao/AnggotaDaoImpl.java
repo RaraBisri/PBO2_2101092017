@@ -74,9 +74,9 @@ public class AnggotaDaoImpl implements AnggotaDao {
         List<Anggota> list = new ArrayList<>();
         Anggota anggota = null;
         while (rs.next()){
-        anggota = new Anggota();
-        anggota.setKodeanggota(rs.getString(1));
-        anggota.setNamaanggota(rs.getString(2));
+            anggota = new Anggota();
+            anggota.setKodeanggota(rs.getString(1));
+            anggota.setNamaanggota(rs.getString(2));
             anggota.setAlamat(rs.getString(3));
             anggota.setJeniskelamin(rs.getString(4));
             list.add(anggota);
