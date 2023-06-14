@@ -121,6 +121,11 @@ public class FormAnggota extends javax.swing.JFrame {
         btnInsert.setBounds(20, 200, 65, 25);
 
         cboJeniskelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboJeniskelamin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboJeniskelaminActionPerformed(evt);
+            }
+        });
         getContentPane().add(cboJeniskelamin);
         cboJeniskelamin.setBounds(130, 150, 430, 22);
 
@@ -244,6 +249,10 @@ public class FormAnggota extends javax.swing.JFrame {
     private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlamatActionPerformed
+
+    private void cboJeniskelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboJeniskelaminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboJeniskelaminActionPerformed
  
     public JComboBox<String> getCboJeniskelamin() {
         return cboJeniskelamin;
