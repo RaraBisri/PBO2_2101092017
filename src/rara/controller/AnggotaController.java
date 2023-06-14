@@ -108,6 +108,19 @@ public class AnggotaController {
         }
     }
     
+    public void tabelKlik(){
+        try {
+            String kode = formAnggota.getTblAnggota().getValueAt(formAnggota.getTblAnggota().getSelectedRow(),0).toString();
+            anggota = anggotaDao.getAnggota(con, kode);
+            formAnggota.getTxtKodeanggota().setText(anggota.getKodeanggota());
+            formAnggota.getTxtNamaanggota().setText(anggota.getNamaanggota());
+            formAnggota.getTxtAlamat().setText(anggota.getAlamat());
+            formAnggota.getCboJeniskelamin().setSelectedItem(anggota.getJeniskelamin());
+        } catch (Exception ex) {
+            Logger.getLogger(AnggotaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
    public void tampil(){
         try {
             DefaultTableModel tabel = (DefaultTableModel) formAnggota.getTblAnggota().getModel();
