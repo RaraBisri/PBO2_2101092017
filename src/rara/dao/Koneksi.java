@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author USER
  */
 public class Koneksi {
-    private String url = "jdbc:mysql://localhost/pbo2_2101092017_rarabisri";
+    private String url = "jdbc:mysql://localhost/pbo2_rara_2101092017";
     private String username = "root";
     private String password = "";
     
