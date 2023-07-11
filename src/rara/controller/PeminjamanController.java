@@ -24,6 +24,7 @@ import rara.model.Anggota;
 import rara.model.Buku;
 import rara.model.Peminjaman;
 import rara.view.FormPeminjaman;
+import rara.view.FormPengembalian;
 
 /**
  *
@@ -33,18 +34,18 @@ public class PeminjamanController {
     private FormPeminjaman formPeminjaman;
     private Peminjaman peminjaman;
     private PeminjamanDao peminjamanDao;
-    private Connection con;
     private AnggotaDao anggotaDao;
     private BukuDao bukuDao;
-    private Koneksi k;
+    private Connection con;
+    private Koneksi koneksi;
     
     public PeminjamanController(FormPeminjaman formPeminjaman){
-    try {
+        try {
             this.formPeminjaman = formPeminjaman;
-            peminjamanDao = new PeminjamanDaoImpl();
+            peminjamanDao = new PeminjamanDaoImpl() ;
             anggotaDao = new AnggotaDaoImpl();
             bukuDao = new BukuDaoImpl();
-            k = new Koneksi();
+            Koneksi k = new Koneksi();
             con = k.getKoneksi();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,12 +54,12 @@ public class PeminjamanController {
         }
     }
     
-     public void clearForm(){
+    public void clearForm(){
         formPeminjaman.getTxtTglpinjam().setText("");
         formPeminjaman.getTxtTglkembali().setText("");
     }
-     
-     public void isiCombo(){
+    
+    public void isiCombo(){
         try {
             formPeminjaman.getCboKodeanggota().removeAllItems();
             formPeminjaman.getCboKodebuku().removeAllItems();
@@ -73,9 +74,9 @@ public class PeminjamanController {
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     }
-     
-      public void insert(){
+    }
+    
+    public void insert(){
         try {
             peminjaman = new Peminjaman();
             peminjaman.setKodeanggota(formPeminjaman.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
@@ -83,15 +84,13 @@ public class PeminjamanController {
             peminjaman.setTglpinjam(formPeminjaman.getTxtTglpinjam().getText());
             peminjaman.setTglkembali(formPeminjaman.getTxtTglkembali().getText());
             peminjamanDao.insert(con, peminjaman);
-            JOptionPane.showMessageDialog(formPeminjaman, "Entri ok");
+            JOptionPane.showMessageDialog(formPeminjaman, "Entri Data OKE");
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
     }
-      
-      
-      public void getPeminjaman(){
+    
+    public void getPeminjaman(){
         try {
             String kodeanggota = formPeminjaman.getTblPeminjaman().getValueAt(formPeminjaman.getTblPeminjaman().getSelectedRow(), 0).toString();
             String kodebuku = formPeminjaman.getTblPeminjaman().getValueAt(formPeminjaman.getTblPeminjaman().getSelectedRow(), 1).toString();
@@ -106,37 +105,33 @@ public class PeminjamanController {
             }
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+        }
     }
-
-     
-      public void update(){
+    
+    public void update(){
         try {
+            peminjaman = new Peminjaman();
             peminjaman.setKodeanggota(formPeminjaman.getCboKodeanggota().getSelectedItem().toString().split("-")[0]);
             peminjaman.setKodebuku(formPeminjaman.getCboKodebuku().getSelectedItem().toString());
             peminjaman.setTglpinjam(formPeminjaman.getTxtTglpinjam().getText());
             peminjaman.setTglkembali(formPeminjaman.getTxtTglkembali().getText());
             peminjamanDao.update(con, peminjaman);
-            JOptionPane.showMessageDialog(formPeminjaman,"Update ok");
+            JOptionPane.showMessageDialog(formPeminjaman, "Update Data OKE");
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
-      public void delete(){
+    
+    public void delete(){
         try {
             peminjamanDao.delete(con, peminjaman);
-            JOptionPane.showMessageDialog(formPeminjaman, "Delete Ok");
+            JOptionPane.showMessageDialog(formPeminjaman, "Delete OK");
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
-       public void cari(){
-        
-    }
-       
-        public void tampil(){
+    
+    public void tampil(){
         try {
             DefaultTableModel tabel = (DefaultTableModel) formPeminjaman.getTblPeminjaman().getModel();
             tabel.setRowCount(0);
@@ -149,10 +144,9 @@ public class PeminjamanController {
                     peminjaman1.getTglkembali()
                 };
                 tabel.addRow(row);
-            }
+            } 
         } catch (Exception ex) {
             Logger.getLogger(PeminjamanController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
-      
+   }
 }
