@@ -22,5 +22,7 @@ public class Koneksi {
         Class.forName("com.mysql.jdbc.Driver");
         return DriverManager.getConnection(url, username, password);
     }
+
+   
 }
 
