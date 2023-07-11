@@ -19,6 +19,5 @@ public interface PeminjamanDao {
     public void delete(Connection con, Peminjaman peminjaman) throws Exception;
     public Peminjaman getPeminjaman(Connection con, String kodeanggota, String kodebuku, String tglpinjam) throws Exception;
     public List<Peminjaman> getAllPeminjaman(Connection con) throws Exception;
-
-   
+    
 }
